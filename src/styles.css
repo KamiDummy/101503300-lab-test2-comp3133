@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.gryffindor {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.slytherin {
+  color: #4caf50;
+  font-weight: bold;
+}
+
+.ravenclaw {
+  color: #2196f3;
+  font-weight: bold;
+}
+
+.hufflepuff {
+  color: #ffc107;
+  font-weight: bold;
+}
+
+.no-house {
+  color: #9e9e9e;
+}

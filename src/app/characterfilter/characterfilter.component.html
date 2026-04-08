@@ -1,0 +1,62 @@
+<div class="filter-header">
+  <h2>Harry Potter Characters Filter</h2>
+  <mat-form-field appearance="fill" class="house-select">
+    <mat-label>Select House</mat-label>
+    <mat-select [formControl]="houseControl">
+      <mat-option value="">-- Choose a House --</mat-option>
+      @for (h of houses; track h) {
+        <mat-option [value]="h">{{ h }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+</div>
+
+@if (loading()) {
+  <div class="loading-box">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+} @else if (!houseControl.value) {
+  <div class="empty-text">
+    <p>Please select a house from the dropdown above.</p>
+  </div>
+} @else if (characters().length === 0) {
+  <div class="empty-text">
+    <p>No characters found for this house.</p>
+  </div>
+} @else {
+  <div class="card-grid">
+    @for (c of characters(); track c.id) {
+      <mat-card class="character-card">
+        @if (c.image) {
+          <img mat-card-image [src]="c.image" [alt]="c.name" class="char-image">
+        } @else {
+          <div class="no-image">No Image</div>
+        }
+        <mat-card-content>
+          <h3 class="char-name">{{ c.name }}</h3>
+          <p class="char-actor">Actor: {{ c.actor || 'Unknown' }}</p>
+          @switch (c.house) {
+            @case ('Gryffindor') {
+              <p class="char-house gryffindor">Gryffindor</p>
+            }
+            @case ('Slytherin') {
+              <p class="char-house slytherin">Slytherin</p>
+            }
+            @case ('Ravenclaw') {
+              <p class="char-house ravenclaw">Ravenclaw</p>
+            }
+            @case ('Hufflepuff') {
+              <p class="char-house hufflepuff">Hufflepuff</p>
+            }
+            @default {
+              <p class="char-house no-house">No House</p>
+            }
+          }
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-raised-button color="primary" [routerLink]="['/character', c.id]">View Details</a>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>
+}

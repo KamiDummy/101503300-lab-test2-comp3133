@@ -1,0 +1,45 @@
+<div class="page-title">
+  <h2>All Harry Potter Characters</h2>
+</div>
+
+@if (loading()) {
+  <div class="loading-box">
+    <mat-spinner diameter="50"></mat-spinner>
+    <p>Loading characters...</p>
+  </div>
+} @else {
+  <div class="card-grid">
+    @for (c of characters(); track c.id) {
+      <mat-card class="character-card">
+        @if (c.image) {
+          <img mat-card-image [src]="c.image" [alt]="c.name" class="char-image">
+        } @else {
+          <div class="no-image">No Image</div>
+        }
+        <mat-card-content>
+          <h3 class="char-name">{{ c.name }}</h3>
+          @switch (c.house) {
+            @case ('Gryffindor') {
+              <p class="char-house gryffindor">Gryffindor</p>
+            }
+            @case ('Slytherin') {
+              <p class="char-house slytherin">Slytherin</p>
+            }
+            @case ('Ravenclaw') {
+              <p class="char-house ravenclaw">Ravenclaw</p>
+            }
+            @case ('Hufflepuff') {
+              <p class="char-house hufflepuff">Hufflepuff</p>
+            }
+            @default {
+              <p class="char-house no-house">No House</p>
+            }
+          }
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-raised-button color="primary" [routerLink]="['/character', c.id]">View Details</a>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>
+}

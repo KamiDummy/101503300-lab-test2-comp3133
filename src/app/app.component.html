@@ -1,0 +1,10 @@
+<mat-toolbar color="primary" class="app-header">
+  <span class="app-title">{{ title }}</span>
+  <span class="spacer"></span>
+  <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">All Characters</a>
+  <a mat-button routerLink="/filter" routerLinkActive="active-link">Filter by House</a>
+</mat-toolbar>
+
+<div class="page-content">
+  <router-outlet></router-outlet>
+</div>
